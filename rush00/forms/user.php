@@ -1,5 +1,4 @@
 <?php
-$db = getDB();
 
 if (isset($_SESSION["params"]))
 	$params = $_SESSION["params"];
@@ -13,7 +12,7 @@ if (isset($params["error"]))
 // logout form
 if (isset($_POST["logout"]))
 {
-	mysqli_query($db, "UPDATE `users` SET `logged`= 0 WHERE `id`=".(int)$_SESSION['id']);
+	mysqli_query(getDB(), "UPDATE `users` SET `logged`= 0 WHERE `id`=".(int)$_SESSION['id']);
 	session_destroy();
 	header("Location: home");
 }
@@ -21,7 +20,7 @@ if (isset($_POST["logout"]))
 // sign-in form
 if (isset($_POST["signin"]))
 {
-	mysqli_query($db, "INSERT INTO `users`(`name`, `mail`, `address`, `password`, `login`)
+	mysqli_query(getDB(), "INSERT INTO `users`(`name`, `mail`, `address`, `password`, `login`)
 	VALUES ('".$_POST['name']."', '".$_POST['mail']."', '".$_POST['address']."', '".$_POST['password']."', '".$_POST['login']."')");
 
 	$_POST["log"] = True;
@@ -32,7 +31,7 @@ if (isset($_POST["signin"]))
 // login form
 if (isset($_POST["log"]))
 {
-	$query = mysqli_query($db, 'SELECT * FROM users WHERE login = "'.$_POST["login"].'"');
+	$query = mysqli_query(getDB(), 'SELECT * FROM users WHERE login = "'.$_POST["login"].'"');
 	$query = mysqli_fetch_assoc($query);
 
 	if ($query &&
@@ -47,7 +46,7 @@ if (isset($_POST["log"]))
 		$_SESSION['address'] = $query['address'];
 		$_SESSION['rank'] = (int)$query['rank'];
 
-		mysqli_query($db, "UPDATE `users` SET `logged`=1 WHERE `id`=".(int)$_SESSION['id']);
+		mysqli_query(getDB(), "UPDATE `users` SET `logged`=1 WHERE `id`=".(int)$_SESSION['id']);
 		unset($params["error"]);
 	}
 	else {
@@ -63,7 +62,7 @@ if (isset($_POST["log"]))
 // update user form
 if (isset($_POST["updateUser"]))
 {
-	mysqli_query($db, "UPDATE `users` SET
+	mysqli_query(getDB(), "UPDATE `users` SET
 		 `name`='".$_POST['name']."',
 		 `mail`='".$_POST['mail']."',
 		 `address`='".$_POST['address']."',

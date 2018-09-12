@@ -2,9 +2,10 @@
 
 function getDB()
 {
-	$servername = "localhost";
+	$servername = "172.18.0.2";
 	$username = "root";
 	$password = "";
-	return (mysqli_connect($servername, $username, $password, "rush00"));
+	$database = "rush00";
+	return (mysqli_connect($servername, $username, $password, $database));
 }
 ?>

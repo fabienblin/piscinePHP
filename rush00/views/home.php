@@ -1,4 +1,3 @@
-
 <img id="img_home3" src="img/home3.jpg" alt="alt">
 <img id="img_home1" src="img/home1.jpg" alt="alt">
 <img id="img_home4" src="img/home4.jpg" alt="alt">

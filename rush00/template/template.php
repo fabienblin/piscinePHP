@@ -2,7 +2,7 @@
 //include ("cart_functions.php");
 if (isset($_SESSION["params"]))
 	$params = $_SESSION["params"];
-var_dump($_SESSION);
+//var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
