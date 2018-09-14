@@ -8,15 +8,51 @@ function ft_split($str) {
 	return $split;
 }
 
-if ($argc > 1)
+
+if ($argc != 1)
 {
-	$split = array();
-	for ($i = 1; $i < $argc; $i++) {
-		$split = array_merge($split, ft_split($argv[$i]));
+	$e = array();
+	foreach ($argv as $arg) {
+		if ($arg != $argv[0])
+		{
+			$tab = ft_split($arg);
+			$e = array_merge($e, $tab);
+		}
 	}
-	sort($split, SORT_NATURAL | SORT_FLAG_CASE);
-	foreach ($split as $word) {
-		$str = $str.$word."\n";
+	foreach ($e as $ele) {
+		if(is_numeric($ele) == TRUE)
+		{
+			$numeric[] = $ele;
+		}
 	}
-	echo $str;
+	sort($numeric, SORT_STRING);
+	foreach ($e as $ele) {
+		if(ctype_alpha($ele) == TRUE)
+		{
+			$string[] = $ele;
+		}
+	}
+	sort($string, SORT_NATURAL | SORT_FLAG_CASE);
+	foreach ($e as $ele) {
+		if(ctype_alpha($ele) == FALSE && is_numeric($ele) == FALSE)
+		{
+			$ascii[] = $ele;
+		}
+	}
+	sort($ascii);
+	foreach($string as $element)
+	{
+		echo $element;
+		echo "\n";
+	}
+	foreach($numeric as $element)
+	{
+		echo $element;
+		echo "\n";
+	}
+	foreach($ascii as $element)
+	{
+		echo $element;
+		echo "\n";
+	}
 }
